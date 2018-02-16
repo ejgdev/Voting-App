@@ -1,33 +1,27 @@
 {
-  "name": "clementinejs-fcc",
-  "version": "1.0.1",
-  "description": "The elegant and lightweight boilerplate for full stack JavaScript.",
+  "name": "Voting-App",
+  "version": "1.0.0",
+  "description": "",
+  "url": "https://github.com/Rolilink/oye-la-pega-api",
   "main": "server.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/johnstonbl01/clementinejs-fcc"
+  "engines": {
+    "node": "6.10.0"
   },
-  "homepage": "http://www.clementinejs.com/",
-  "bugs": "https://github.com/johnstonbl01/clementinejs-fcc/issues",
-  "keywords": [
-    "MongoDB",
-    "Mongoose",
-    "full stack",
-    "Express",
-    "Node",
-    "javascript",
-    "boilerplate"
-  ],
   "scripts": {
-    "start": "node server.js"
+    "start:dev": "nodemon ./bin/www",
+    "db:migrate": "node_modules/.bin/sequelize db:migrate",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Blake Johnston",
-  "license": "MIT",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "dotenv": "^1.2.0",
     "express": "^4.12.4",
     "express-session": "^1.11.3",
     "mongoose": "^4.1.0",
+    "nodemon": "^1.15.0",
     "passport": "^0.3.0",
     "passport-github": "^1.0.0"
   }

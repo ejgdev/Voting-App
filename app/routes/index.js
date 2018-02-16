@@ -2,6 +2,7 @@
 
 var path = process.cwd();
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var createPoll = require(path + '/app/controllers/createPoll.js');
 
 module.exports = function (app, passport) {
 
@@ -34,6 +35,15 @@ module.exports = function (app, passport) {
 	app.route('/profile')
 		.get(isLoggedIn, function (req, res) {
 			res.sendFile(path + '/public/profile.html');
+		});
+
+	app.route('/newpoll')	// NEW PULL ROUTE		-----------------
+		.get(isLoggedIn, function (req, res) {
+			res.sendFile(path + '/public/newpoll.html');
+		})
+		.post(isLoggedIn, function (req, res) {
+  		console.log("WHY REQ NOT WORKING IN ROUTES INDEX: "+req);
+			res.redirect("/");
 		});
 
 	app.route('/api/:id')
