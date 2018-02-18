@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		 <% include ./partials/head %>
+	</head>
+
+	<header>
+		<% include ./partials/header %>
+	</header>
+<!----------------------------------------------------------------------------->
+<body>
+	<div class="container">
+		<P>Below are all the polls, select a poll to see the results and you can vote too.</p>
+		<P> If you want create a poll, you need be logged in.</p>
+		<div class="table-responsive">
+  		<table class="table table-striped table-bordered">
+				<thead>
+				<tr>
+				    <td class="text-center"><h2>CHOOSE A POLL:</h2></td>
+						</tr>
+				</thead>
+				<% for(var i=0;i<pollList.length;i++){ %>
+				<tr>
+					<td class="text-center"><a href=<%= '/polls/'+pollList[i].id %> style="text-decoration: none;">
+								<h3><%=pollList[i].title%></h3>
+							</a></td>
+				</tr>
+					<% } %>
+			</table>
+		</div>
+	</div>
+    <% include ./partials/body-partial %>
+</body>
+<footer>
+    <% include ./partials/footer %>
+</footer>
+</html>

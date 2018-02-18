@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+html, body {
+  height:100%;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  display:flex;
+  align-items:center;
+  background: #F3EFE0;
+}
+
+nav{
+  height: 100px;
+}
+
+nav a {
+  margin-left: .8rem;
+  margin-right: .8rem;
+}
+.navbar-brand
+{
+  font-size: 30px;
+  margin: 0px;
+  margin-left: 2rem;
+}
+
+.footer-info{
+  height: 60px;
+  display:flex;
+  align-items:center;
+}
+
+.field-label-responsive {
+    padding-top: .5rem;
+    text-align: right;
+  }
+
+.bottomdiv {
+    position:absolute;
+    left:0;
+    bottom:0;
+  }
+
+/*-----------------------Profile CSS----------------------------------*/
+.main-section{
+	border:1px solid #138496;
+	background-color: #fff;
+}
+.profile-header{
+	background-color: #212529;
+	height:150px;
+}
+.user-detail{
+	margin:-50px 0px 30px 0px;
+}
+.user-detail img{
+	height:100px;
+	width:100px;
+}
+.user-detail h5{
+	margin:15px 0px 5px 0px;
+}
+.user-social-detail{
+	padding:15px 0px;
+	background-color: #212529;
+}

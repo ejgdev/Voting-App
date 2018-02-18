@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		 <% include ./partials/head %>
+		 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
+	</head>
+	<header>
+		<% include ./partials/header %>
+	</header>
+<!--                                   body                         -->
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md">
+        <div class="container">
+          <!-- form -->
+					<form class="form-horizontal" role="form" method="POST" action="/poll">
+			      <div class="row">
+			        <div class="col-md-12">
+			          <h3 class="text-uppercase"><%= title %></h3><hr>
+			        </div>
+			      </div><!-- close row -->
+						<div class="row">
+			        <div class="col-md-12">
+			          <h5>I would like to vote for:</h5>
+			        </div>
+			      </div><!-- close row -->
+			      <div class="row">
+			        <div class="col-md-12">
+			          <div class="form-group">
+										<select class="custom-select" id="selectOption">
+					            <option selected>Choose an option...</option>
+					            <% for(var i=0;i<data.length;i++){ %>
+					    					<option value="<%= data[i].name %>"><%= data[i].name %></option>
+					    				<% } %>
+					          </select>
+			          </div>
+			        </div>
+			      </div><!-- close row -->
+			      <div class="row">
+			        <div class="col-md-12">
+			          <button type="submit" class="btn btn-success btn-lg">Vote!</button>
+			        </div>
+			      </div>
+			    </form>
+					<div class="row pt-4 pb-4"></div>
+					<!--- Form ends --->
+        </div>
+				<% if (userLogged) { %>
+				<div class="container bottomdiv">
+					<div class="row">
+						<div class="col-md-12">
+							<h5>Share it!</h5>
+						</div>
+					</div><!-- close row -->
+					<div class="row">
+						<div class="col-md-12">
+							<!-- AddToAny BEGIN -->
+							<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+								<a class="a2a_button_facebook"></a>
+								<a class="a2a_button_twitter"></a>
+								<a class="a2a_button_google_plus"></a>
+								<a class="a2a_button_pinterest"></a>
+								<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+							</div>
+							<script>
+							var a2a_config = a2a_config || {};
+							a2a_config.linkurl = "<%= link %>";
+							</script>
+							<script async src="https://static.addtoany.com/menu/page.js"></script>
+							<!-- AddToAny END -->
+						</div>
+					</div><!-- close row -->
+					<div class="row pt-4"></div>
+					<div class="row">
+						<div class="col-md-12">
+							<h5>Or copy to Clipboard!</h5>
+						</div>
+					</div><!-- close row -->
+					<div class="row">
+						<div class="input-group">
+							<input class="form-control" type="text" value="<%= link %>" id="myInput" readonly>
+							<span class="input-group-btn">
+							 <button class="btn btn-dark float-right" onclick="myFunction()">Copy Link!</button>
+							</span>
+						</div>
+					</div><!-- close row -->
+				</div>
+				<% } %>
+      </div>
+      <div class="col-md">
+				<canvas id="myCart" width="600" height="700"></canvas>
+      </div>
+    </div>
+  </div>
+	<% include ./partials/body-partial %>
+	<script>
+		function myFunction() {
+		  var copyText = document.getElementById("myInput");
+		  copyText.select();
+		  document.execCommand("Copy");
+		  alert("Link Copied: " + copyText.value);
+		}
+	</script>
+	<script>
+	 	var data = <%- JSON.stringify(data) %>
+	 	var label = [];
+	 	var value = [];
+	 	var color = [];
+	 	data.forEach(function(element){
+	 		label.push(element.name);
+	 		value.push(element.value);
+	 		color.push(randomColorGenerator());
+	 	});
+
+	 	var myBarChart = new Chart(document.getElementById('myCart').getContext("2d"),{
+	 		type:'doughnut',
+	 		data: {
+	 			labels: label,
+	 			datasets: [{
+	 				label:" Votes",
+	 				data: value,
+	 				backgroundColor: color,
+	 				borderColor: color,
+	 				borderWidth: 4,
+	 			}]
+	 		},
+			options: {
+        legend: {
+            display: true,
+						position: 'bottom',
+            labels: {
+								fontSize: 20,
+                fontColor: 'rgb(33, 37, 41)'
+            }
+        }
+}
+	 	});
+
+		function randomColorGenerator(){
+	 		var red = randomNum(255);
+	 		var green = randomNum(255);
+	 		var blue = randomNum(255);
+	 		return 'rgba('+red+','+green+','+blue+','+0.2+')';
+	 	}
+	 	function randomNum(num){
+	 		return Math.floor(Math.random()*num);
+	 	}
+	</script>
+</body>
+<footer>
+  <% include ./partials/footer %>
+</footer>
+</html>
