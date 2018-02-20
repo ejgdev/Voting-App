@@ -13,8 +13,6 @@
     <div class="row">
       <div class="col-md">
         <div class="container">
-          <!-- form -->
-					<form class="form-horizontal" role="form" method="POST" action="/poll">
 			      <div class="row">
 			        <div class="col-md-12">
 			          <h3 class="text-uppercase"><%= title %></h3><hr>
@@ -25,23 +23,29 @@
 			          <h5>I would like to vote for:</h5>
 			        </div>
 			      </div><!-- close row -->
-			      <div class="row">
-			        <div class="col-md-12">
-			          <div class="form-group">
-										<select class="custom-select" id="selectOption">
-					            <option selected>Choose an option...</option>
-					            <% for(var i=0;i<data.length;i++){ %>
-					    					<option value="<%= data[i].name %>"><%= data[i].name %></option>
-					    				<% } %>
-					          </select>
-			          </div>
-			        </div>
-			      </div><!-- close row -->
-			      <div class="row">
-			        <div class="col-md-12">
-			          <button type="submit" class="btn btn-success btn-lg">Vote!</button>
-			        </div>
-			      </div>
+					<!-- form -->
+					<form action="/polls/<%= id %>" method="POST">
+						<div class="form-group">
+							<select name="vote" class="form-control" onchange="yesnoCheck(this);">
+								var data = <%- JSON.stringify(data) %>
+								<option value="blankItem" selected="selected">Choose an Option...</option>
+								<% for(var i=0;i<data.length;i++) {%>
+									<option value=<%=i%>><%= data[i].name %></option>
+								<% } %>
+									<% if (userLogged) { %>
+									<option value="other">I would like a different option</option>
+									<% } %>
+							</select>
+						</div>
+						<div id="ifYes" style="display: none;">
+							<div class="form-group">
+	 							<label for="customOption"><h5>Vote with my own option: </	h5></label>
+								<input type="text" id="customOption" name="customOption" class="form-control"/>
+							</div>
+						</div>
+			      <div class="form-group">
+			       	<button type="submit" class="btn btn-success btn-lg">Vote!</button>
+				    </div>
 			    </form>
 					<div class="row pt-4 pb-4"></div>
 					<!--- Form ends --->
@@ -63,18 +67,14 @@
 								<a class="a2a_button_pinterest"></a>
 								<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
 							</div>
-							<script>
-							var a2a_config = a2a_config || {};
-							a2a_config.linkurl = "<%= link %>";
-							</script>
-							<script async src="https://static.addtoany.com/menu/page.js"></script>
+
 							<!-- AddToAny END -->
 						</div>
 					</div><!-- close row -->
 					<div class="row pt-4"></div>
 					<div class="row">
 						<div class="col-md-12">
-							<h5>Or copy to Clipboard!</h5>
+							<h5>Or copy the Link to share!</h5>
 						</div>
 					</div><!-- close row -->
 					<div class="row">
@@ -85,6 +85,11 @@
 							</span>
 						</div>
 					</div><!-- close row -->
+					<% if (user.id === owner) {	%>
+						<div class="row pt-4">
+							<a class="btn btn-danger btn-lg btn-block" href=<%= '/polls/delete/'+ id %>>Delete this Poll</a>
+						</div>
+					<% } %>
 				</div>
 				<% } %>
       </div>
@@ -94,59 +99,7 @@
     </div>
   </div>
 	<% include ./partials/body-partial %>
-	<script>
-		function myFunction() {
-		  var copyText = document.getElementById("myInput");
-		  copyText.select();
-		  document.execCommand("Copy");
-		  alert("Link Copied: " + copyText.value);
-		}
-	</script>
-	<script>
-	 	var data = <%- JSON.stringify(data) %>
-	 	var label = [];
-	 	var value = [];
-	 	var color = [];
-	 	data.forEach(function(element){
-	 		label.push(element.name);
-	 		value.push(element.value);
-	 		color.push(randomColorGenerator());
-	 	});
-
-	 	var myBarChart = new Chart(document.getElementById('myCart').getContext("2d"),{
-	 		type:'doughnut',
-	 		data: {
-	 			labels: label,
-	 			datasets: [{
-	 				label:" Votes",
-	 				data: value,
-	 				backgroundColor: color,
-	 				borderColor: color,
-	 				borderWidth: 4,
-	 			}]
-	 		},
-			options: {
-        legend: {
-            display: true,
-						position: 'bottom',
-            labels: {
-								fontSize: 20,
-                fontColor: 'rgb(33, 37, 41)'
-            }
-        }
-}
-	 	});
-
-		function randomColorGenerator(){
-	 		var red = randomNum(255);
-	 		var green = randomNum(255);
-	 		var blue = randomNum(255);
-	 		return 'rgba('+red+','+green+','+blue+','+0.2+')';
-	 	}
-	 	function randomNum(num){
-	 		return Math.floor(Math.random()*num);
-	 	}
-	</script>
+	<% include ./partials/poll-scripts %>
 </body>
 <footer>
   <% include ./partials/footer %>

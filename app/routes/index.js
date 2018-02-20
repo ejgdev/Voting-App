@@ -2,6 +2,7 @@
 
 var path = process.cwd();
 var createPoll = require(path + '/app/controllers/createPoll.js');
+var updatePoll = require(path + '/app/controllers/updatePoll.js');
 var pollDB = require(path + '/app/models/polls.js');
 
 module.exports = function (app, passport) {
@@ -20,6 +21,7 @@ module.exports = function (app, passport) {
 				res.render('index.ejs',{
 					userLogged: req.isAuthenticated(),
 					user: req.user,
+					showButton: 0,
 					pollList: data
 				});
 			});
@@ -71,14 +73,37 @@ module.exports = function (app, passport) {
 					link: req.get('host')+req.originalUrl,
 					user: req.user,
 					title: data.title,
+					owner: data.owner,
 					data: data.options
 				});
 			});
 		})
-		.post(isLoggedIn, function (req, res) {
-			createPoll(req, res);
-			res.redirect("/");
+		.post(function (req, res) {
+			updatePoll(req, res);
 		});
+
+		app.route('/polls/delete/:id')	// POLL ROUTE	FOR DELETE OPTION	-----------------
+		.get(function (req, res) {
+			console.log(req.params.id);
+			pollDB.deleteOne({ "_id": req.params.id }, function(err, obj) {
+    		if (err) throw err;
+    		console.log("Poll delete");
+  		});
+    res.redirect('/mypolls');
+	});
+
+		app.route('/mypolls')	// MYPOLL ROUTE		-----------------
+		.get(isLoggedIn, function (req, res) {
+			pollDB.find({owner: req.user.id}).exec(function(err,data){
+				res.render('index.ejs',{
+					userLogged: req.isAuthenticated(),
+					user: req.user,
+					showButton: 1,
+					pollList: data
+				});
+			});
+		});
+
 
 	app.route('/auth/github')
 		.get(passport.authenticate('github'));

@@ -1,0 +1,68 @@
+<script>
+   function yesnoCheck(that) {
+       if (that.value == "other") {
+          document.getElementById("ifYes").style.display = "block";
+       }
+       else {
+           document.getElementById("ifYes").style.display = "none";
+       }
+   }
+</script>
+<script>
+var a2a_config = a2a_config || {};
+a2a_config.linkurl = "<%= link %>";
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<script>
+  function myFunction() {
+    var copyText = document.getElementById("myInput");
+    copyText.select();
+    document.execCommand("Copy");
+    alert("Link Copied: " + copyText.value);
+  }
+</script>
+<script>
+  var data = <%- JSON.stringify(data) %>
+  var label = [];
+  var value = [];
+  var color = [];
+  data.forEach(function(element){
+    label.push(element.name);
+    value.push(element.value);
+    color.push(randomColorGenerator());
+  });
+
+  var myBarChart = new Chart(document.getElementById('myCart').getContext("2d"),{
+    type:'doughnut',
+    data: {
+      labels: label,
+      datasets: [{
+        label:" Votes",
+        data: value,
+        backgroundColor: color,
+        borderColor: color,
+        borderWidth: 4,
+      }]
+    },
+    options: {
+      legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+              fontSize: 20,
+              fontColor: 'rgb(33, 37, 41)'
+          }
+      }
+}
+  });
+
+  function randomColorGenerator(){
+    var red = randomNum(255);
+    var green = randomNum(255);
+    var blue = randomNum(255);
+    return 'rgba('+red+','+green+','+blue+','+0.2+')';
+  }
+  function randomNum(num){
+    return Math.floor(Math.random()*num);
+  }
+</script>
