@@ -1,4 +1,4 @@
-Clementine.js
+Copyright for Clementine.js
 Copyright (c) 2015 Blake Johnston. All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
