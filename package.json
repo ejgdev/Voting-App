@@ -1,8 +1,8 @@
 {
   "name": "Voting-App",
   "version": "1.0.0",
-  "description": "",
-  "url": "",
+  "description": "https://github.com/edlobox/Voting-App",
+  "url": "https://powerful-brook-68149.herokuapp.com/",
   "main": "server.js",
   "engines": {
     "node": "6.10.0"

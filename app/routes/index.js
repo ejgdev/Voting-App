@@ -55,6 +55,7 @@ module.exports = function (app, passport) {
 		app.get('*', function(req, res){
 			res.render('error404.ejs',{
 				userLogged: req.isAuthenticated(),
+				user: req.user,
 				id: req.params.id
 			});
 		});
