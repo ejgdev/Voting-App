@@ -1,45 +1,66 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		 <% include ./partials/head %>
+		<% include ./partials/head %>
 	</head>
-
-	<header>
+	<body id="page-top">
+		<!-- Navigation -->
 		<% include ./partials/header %>
-	</header>
-<!----------------------------------------------------------------------------->
-<body>
-	<div class="container">
-		<P>Below are all the polls, select a poll to see the results and you can vote too.</p>
-		<P> If you want create a poll, you need be logged in.</p>
-		<div class="table-responsive">
-  		<table class="table table-striped table-bordered">
-				<thead>
-				<tr>
-				    <td class="text-center"><h4>CHOOSE A POLL</h4></td>
-						<% if (showButton !== 0) {%>
-						 <td class="text-center"><h4>OPTION</h4></td>
-						<% } %>
-						</tr>
-				</thead>
-				<% for(var i=0;i<pollList.length;i++){ %>
-				<tr>
-					<td class="text-center"><a href=<%= '/polls/'+pollList[i].id %>>
-								<h3><%=pollList[i].title%></h3>
-							</a></td>
-					<% if (showButton !== 0) {%>
-						<td class="text-center">
-							<a class="btn btn-raised btn-danger" href=<%= '/polls/delete/'+pollList[i].id %>>Delete</a></td>
-						</td>
-					<% } %>
-				</tr>
-					<% } %>
-			</table>
-		</div>
-	</div>
+		<!-- End Navigation -->
+		<header class="header-nightsky">
+			<div class="container text-center">
+				<div>
+            <h1>Welcome to Voting App</h1>
+						<h5>This is a proyect for Freecodecamp.</h5>
+            <p class="lead">Below are all the polls, select a poll to see the results and you can vote too.</p>
+						<a href="https://github.com/edlobox/Voting-App" class="btn btn-outline-light" role="button" aria-disabled="true">Learn more about</a>
+						<hr>
+						<P class="lead"> If you want create a poll, you need be logged in.</p>
+        </div>
+			</div>
+		</header>
+		<!-- The Poll's List -->
+		<section class="section-custom" id="pollList">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+						<div class="table-responsive">
+				  		<table class="table table-striped table-hover table-fill  box-shadow--6dp">
+							  <!-- Head -->
+								<thead class="bg-dark text-white">
+									<tr>
+										<td class="text-center"><h4>N°.</h4></td>
+								    <td class="text-center"><h4>Choose a poll below</h4></td>
+										<% if (showButton !== 0) {%>
+										 <td class="text-center"><h4>OPTION</h4></td>
+										<% } %>
+										</tr>
+								</thead>
+								<!-- / Head -->
+								<% for(var i=0;i<pollList.length;i++){ %>
+								<tr>
+									<td class="text-center"><h6><%= i+1 %></h6></td>
+									<td class="text-center"><a class="btn-outline-secondary" href=<%= '/polls/'+pollList[i].id %>>
+												<h5 class="text-lowercase"><%=pollList[i].title%></h5>
+											</a></td>
+									<% if (showButton !== 0) {%>
+										<td class="text-center">
+											<a class="btn btn-raised btn-danger" href=<%= '/polls/delete/'+pollList[i].id %>>Delete</a></td>
+										</td>
+									<% } %>
+								</tr>
+									<% } %>
+							</table>
+						</div>
+          </div>
+        </div>
+      </div>
+    </section>
     <% include ./partials/body-partial %>
+		<!-- Footer -->
+		<footer>
+			<% include ./partials/footer %>
+		</footer>
+		<!-- End Footer -->
 </body>
-<footer>
-    <% include ./partials/footer %>
-</footer>
 </html>

@@ -5,9 +5,22 @@ html, body {
   font-family: 'Poppins', sans-serif;
 }
 body {
-  display:flex;
   align-items:center;
-  background: #F3EFE0;
+  background: #ECDCC9;
+}
+
+header {
+  padding: 150px 0 100px;
+}
+section {
+  padding: 150px 0;
+}
+footer{
+  padding-top: 60px;
+}
+
+.section-custom {
+  padding: 20px 0;
 }
 
 nav{
@@ -18,6 +31,19 @@ nav a {
   margin-left: .8rem;
   margin-right: .8rem;
 }
+
+.box-shadow--6dp {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2)
+}
+
+.header-nightsky {
+    color: white;
+    background: url("/views/img/nightsky.jpg") no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    padding-bottom: 50px;
+}
+
 .navbar-brand
 {
   font-size: 30px;
@@ -38,9 +64,20 @@ nav a {
 
 .bottomdiv {
     position:absolute;
-    left:0;
+    left:3rem;
     bottom:0;
   }
+  .error-template {
+    padding: 40px 15px;
+    text-align: center;
+  }
+  .error-actions {
+    margin-top:15px;
+    margin-bottom:15px;
+  }
+  .error-actions .btn {
+     margin-right:10px;
+   }
 
 /*-----------------------Profile CSS----------------------------------*/
 .main-section{
@@ -64,4 +101,19 @@ nav a {
 .user-social-detail{
 	padding:15px 0px;
 	background-color: #212529;
+}
+
+.custom-center{
+  display:flex;
+  align-items:center;
+}
+/*-----------------------Profile CSS----------------------------------*/
+
+.table-striped>tbody>tr>td,
+.table-striped>tbody>tr>th {
+	background-color: #F7F7F2;
+}
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+	background-color: #CDDDDD;
 }

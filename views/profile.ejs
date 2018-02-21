@@ -1,45 +1,55 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		 <% include ./partials/head %>
+		<% include ./partials/head %>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
 	</head>
-
-	<header>
+	<body id="page-top">
+		<!-- Navigation -->
 		<% include ./partials/header %>
-	</header>
-<!----------------------------------------------------------------------------->
-<body>
-  <div class="container align-items-center justify-content-center">
-    <div class="row">
-      <div class="offset-lg-4 col-lg-4 col-sm-6 col-12 main-section text-center">
-          <div class="row">
-              <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
-          </div>
-          <div class="row user-detail">
-              <div class="col-lg-12 col-sm-12 col-12">
-                  <img src="/views/img/gh-mark-32px.png" class="rounded-circle img-thumbnail">
-                  <h5><%= user.github.username %></h5>
-                  <p><i class="fab fa-github" aria-hidden="true"></i> ID: <%= user.github.id %></p>
-                  <p><i class="fas fa-bug" aria-hidden="true"></i> Repositories: <%= user.github.publicRepos || null  %></p>
-                  <p><i class="fab fa-github" aria-hidden="true"></i> Username: <%= user.github.username %></p>
-                  <p><i class="far fa-id-card" aria-hidden="true"></i> Display Name: <%= user.github.displayName || null %></p>
-                  <hr>
-                    <a href="/" class="btn btn-success btn-sm">Home</a>
-                    <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
-                  <hr>
-              </div>
-          </div>
-          <div class="row user-social-detail">
-              <div class="col-lg-12 col-sm-12 col-12">
-              </div>
-          </div>
-      </div>
-    </div>
-  </div>
+		<!-- End Navigation -->
 
-    <% include ./partials/body-partial %>
-  </body>
-  <footer>
-    <% include ./partials/footer %>
-  </footer>
-  </html>
+		<section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+						<div class="container align-items-center justify-content-center">
+					    <div class="row">
+					      <div class="offset-lg-4 col-lg-4 col-sm-6 col-12 main-section text-center box-shadow--6dp">
+					          <div class="row">
+					              <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
+					          </div>
+					          <div class="row user-detail">
+					              <div class="col-lg-12 col-sm-12 col-12">
+					                  <img src="/views/img/gh-mark-32px.png" class="rounded-circle img-thumbnail">
+					                  <h5><%= user.github.username %></h5>
+					                  <p><i class="fab fa-github" aria-hidden="true"></i> ID: <%= user.github.id %></p>
+					                  <p><i class="fas fa-bug" aria-hidden="true"></i> Repositories: <%= user.github.publicRepos || null  %></p>
+					                  <p><i class="fab fa-github" aria-hidden="true"></i> Username: <%= user.github.username %></p>
+					                  <p><i class="far fa-id-card" aria-hidden="true"></i> Display Name: <%= user.github.displayName || null %></p>
+					                  <hr>
+					                    <a href="/" class="btn btn-success btn-sm">Home</a>
+					                    <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+					                  <hr>
+					              </div>
+					          </div>
+					          <div class="row user-social-detail">
+					              <div class="col-lg-12 col-sm-12 col-12">
+					              </div>
+					          </div>
+					      </div>
+					    </div>
+					  </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+	<% include ./partials/body-partial %>
+	<!-- Footer -->
+	<footer>
+		<% include ./partials/footer %>
+	</footer>
+	<!-- End Footer -->
+	</body>
+</html>

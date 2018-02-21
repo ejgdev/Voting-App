@@ -5,9 +5,7 @@ module.exports = (req, res) => {
   makePollUpdate(req, res);
 };
 
-function makePollUpdate(req, res){
-  console.log("PROBANDO OTRA OPCION");
-  console.log(req.body);
+let makePollUpdate = (req, res) => {
 
   if(req.body.vote !== "blankItem"){
     Poll.findById(req.params.id,function(err,data){
