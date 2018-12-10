@@ -67,7 +67,7 @@ When everything is setup, you can run the project with this command:
 ```
 npm run start:dev
 ```
-Then open http://localhost:3000/ to see your app. By default run on port 3000.
+Then open http://localhost:8080/ to see your app. By default run on port 8080.
 
 ## Deployment
 
