@@ -15,7 +15,7 @@ require('dotenv').load();
 require('./app/config/passport')(passport);
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGO_URI, {useMongoClient: true});
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true});
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/views', express.static(process.cwd() + '/views'));
