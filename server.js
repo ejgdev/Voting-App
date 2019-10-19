@@ -11,7 +11,7 @@ var app = express();
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({ extended: true})); // true for parsing application/x-www-form-urlencoded
 app.use(bodyParser.json()); // for parsing application/json
-require('dotenv').load();
+require('dotenv').config();
 require('./app/config/passport')(passport);
 
 mongoose.Promise = global.Promise;

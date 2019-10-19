@@ -17,7 +17,7 @@ Click in the download button and get the .zip file. Extract the contents of the 
 Or can clone this repository, just copy the git url and open your terminal and run git clone + repository url:
 
 ```
-git clone https://github.com/edlobox/Voting-App.git
+git clone https://github.com/ejgdev/Voting-App.git
 ```
 
 ### Prerequisites
@@ -107,6 +107,6 @@ Here are the specific user stories you should implement for this project:
 >8. As an authenticated user, if I don't like the options on a poll, I can create a new option.
 
 ### Links
-[https://powerful-brook-68149.herokuapp.com/](https://powerful-brook-68149.herokuapp.com/)
+[Demo App](https://powerful-brook-68149.herokuapp.com/)
 
-[https://github.com/edlobox/Voting-App](https://github.com/edlobox/Voting-App)
+[GitHub](https://github.com/ejgdev/Voting-App)
