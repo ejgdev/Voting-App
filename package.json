@@ -10,12 +10,14 @@
   "scripts": {
     "start": "node server.js",
     "start:dev": "nodemon ./bin/www",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ejg.dev/eslint-config-ejgdev": "^1.0.4",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "ejs": "^2.7.1",

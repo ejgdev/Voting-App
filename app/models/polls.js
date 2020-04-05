@@ -1,13 +1,17 @@
-'use strict';
+const mongoose = require('mongoose');
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const {
+  Schema,
+} = mongoose;
 
-var Poll = new Schema({
+const Poll = new Schema({
   owner: String,
-	title: String,
-	options: [{name:String,value:Number}],
-  votedBy: []
+  title: String,
+  options: [{
+    name: String,
+    value: Number,
+  }],
+  votedBy: [],
 });
 
 module.exports = mongoose.model('Poll', Poll);

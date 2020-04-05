@@ -1,19 +1,23 @@
-'use strict';
 const Poll = require('../models/polls');
 
-module.exports = (req, res) => findAPoll(req, res);
+const findAPoll = (req, res) => {
+  const {
+    id,
+  } = req.params;
 
-let findAPoll = (req, res) => {
-  let id = req.params.id;
-  Poll.findOne({ "_id": id }).exec(function(err,data){
-    res.render('poll.ejs',{
+  Poll.findOne({
+    _id: id,
+  }).exec((err, data) => {
+    res.render('poll.ejs', {
       userLogged: req.isAuthenticated(),
       id: req.params.id,
-      link: req.get('host')+req.originalUrl,
+      link: req.get('host') + req.originalUrl,
       user: req.user,
       title: data.title,
       owner: data.owner,
-      data: data.options
+      data: data.options,
     });
   });
-}
+};
+
+module.exports = (req, res) => findAPoll(req, res);

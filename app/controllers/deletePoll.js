@@ -1,12 +1,17 @@
-'use strict';
 const Poll = require('../models/polls');
 
-module.exports = (req, res) => findAllPolls(req, res);
+const findAllPolls = (req, res) => {
+  Poll.deleteOne({
+    _id: req.params.id,
+  }, (err) => {
+    if (err) {
+      throw err;
+    }
 
-let findAllPolls = (req, res) => {
-  Poll.deleteOne({ "_id": req.params.id }, function(err, obj) {
-    if (err) throw err;
-    console.log("Poll delete");
+    // eslint-disable-next-line
+    console.log('Poll delete');
   });
-res.redirect('/mypolls');
-}
+  res.redirect('/mypolls');
+};
+
+module.exports = (req, res) => findAllPolls(req, res);
